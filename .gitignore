@@ -1,0 +1,6 @@
+pypr-0.1.1-python3-update
+data
+DNN/__pycache__
+DNN/SavedModels
+DNN/venv
+DNN/.idea
