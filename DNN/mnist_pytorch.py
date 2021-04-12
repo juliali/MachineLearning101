@@ -24,26 +24,7 @@ class Net(nn.Module):
         self.fc4 = nn.Linear(num_hidden3, num_hidden4)
         #self.softmax = nn.Softmax(n_output)
 
-        #self.conv1 = nn.Conv2d(1, 32, 3, 1)
-        #self.conv2 = nn.Conv2d(32, 64, 3, 1)
-        #self.dropout1 = nn.Dropout(0.25)
-        #self.dropout2 = nn.Dropout(0.5)
-        #self.fc1 = nn.Linear(9216, 128)
-        #self.fc2 = nn.Linear(128, 10)
-
     def forward(self, x):
-        #x = self.conv1(x)
-        #x = F.relu(x)
-        #x = self.conv2(x)
-        #x = F.relu(x)
-        #x = F.max_pool2d(x, 2)
-        #x = self.dropout1(x)
-        #x = torch.flatten(x, 1)
-        #x = self.fc1(x)
-        #x = F.relu(x)
-        #x = self.dropout2(x)
-        #x = self.fc2(x)
-        #output = F.log_softmax(x, dim=1)
         x = self.fc1(x)
         x = F.relu(x)
         x = self.fc2(x)
@@ -63,7 +44,6 @@ def train(model, device, train_loader, optimizer, epoch, log_interval):
     model.train()
     for batch_idx, (data, target) in enumerate(train_loader):
         data, target = data.to(device), target.to(device)
-        #print(data.reshape(-1,784))
         data = data.reshape(-1, 784)
         optimizer.zero_grad()
         output = model(data)
@@ -74,8 +54,6 @@ def train(model, device, train_loader, optimizer, epoch, log_interval):
             print('Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}'.format(
                 epoch, batch_idx * len(data), len(train_loader.dataset),
                 100. * batch_idx / len(train_loader), loss.item()))
-            #if args.dry_run:
-            #    break
 
 
 def test(model, device, test_loader):
